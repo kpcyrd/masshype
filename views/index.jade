@@ -2,4 +2,10 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  h3 Add client
+  form
+    p
+      span Username
+      input(name="username")
+    p
+      input(type="submit")

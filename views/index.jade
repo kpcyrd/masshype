@@ -9,3 +9,11 @@ block content
     div.form-group
       div.col-xs-3
         input(type="submit" value="Add peer").btn.btn-primary
+
+  h3 Peers
+  table.table.table-striped
+    tr
+      th Email
+    each node in nodes
+      tr
+        td= node.email

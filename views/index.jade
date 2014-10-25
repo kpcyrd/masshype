@@ -2,9 +2,10 @@ extends layout
 
 block content
   h3 Add client
-  form
-    p
-      span Username
-      input(name="username")
-    p
-      input(type="submit")
+  form.form-inline
+    div.form-group
+      div.col-xs-3
+        input(name="email" placeholder="Email").form-control
+    div.form-group
+      div.col-xs-3
+        input(type="submit" value="Add peer").btn.btn-primary

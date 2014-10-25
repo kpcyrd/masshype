@@ -1,3 +1,4 @@
 /node_modules/
 *.swp
 /data/*.json
+/config.json

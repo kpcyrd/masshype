@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 
+var config = require('../config.json');
+
 /* GET home page. */
 router.get('/', function(req, res) {
 
@@ -13,7 +15,7 @@ router.get('/', function(req, res) {
                 nodes.push(require('../data/' + a));
         });
 
-        res.render('index', { title: 'Masshype', nodes: nodes });
+        res.render('index', { title: 'Masshype', config: config, nodes: nodes });
     });
 });
 

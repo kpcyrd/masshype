@@ -2,7 +2,7 @@ extends layout
 
 block content
   h3 Add client
-  form.form-inline
+  form.form-inline(method="post" action="/add")
     div.form-group
       div.col-xs-3
         input(name="email" placeholder="Email").form-control

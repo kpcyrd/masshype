@@ -16,7 +16,7 @@ router.get('/', function(req, res) {
             }
         });
 
-        res.render('index', { title: 'Masshype', nodes: nodes });
+        res.render('index', { title: 'Masshype', nodes: nodes, csrfToken: req.csrfToken() });
     });
 });
 

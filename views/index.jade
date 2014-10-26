@@ -19,4 +19,7 @@ block content
       tr
         td= node.email
         td
-          a.btn.btn-default(href="/show/#{node.file}") Show
+          form.btn-group(method="post" action="delete")
+            a.btn.btn-default(href="/show/#{node.file}") Show
+            input(type="hidden" name="id" value="#{node.file}")
+            input.btn.btn-danger(type="submit" value="Unpeer")

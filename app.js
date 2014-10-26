@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var show = require('./routes/show');
 var users = require('./routes/users');
 var add_peer = require('./routes/add');
+var delete_peer = require('./routes/delete');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/show', show);
 app.post('/add', add_peer);
+app.post('/delete', delete_peer);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

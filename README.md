@@ -14,5 +14,5 @@ Contributions welcome!
 - [ ] Check if passwords from data/ are missing in cjdroute and add them during runtime
 - [ ] Check if passwords have been removed from data/ and remove them in cjdroute during runtime
 - [ ] When adding passwords to data/, add them to cjdroute, too
-- [ ] Allow unpeering
+- [X] Allow unpeering
 - [ ] When unpeering somebody, remove the password from cjdroute, too

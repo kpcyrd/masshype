@@ -19,10 +19,4 @@ block content
       tr
         td= node.email
         td
-          span.password.hidden= node.password
-          button.qr.btn.btn-default QR Code
-
-  canvas#qr
-
-  span.hidden#addr= config.addr
-  span.hidden#publickey= config.publicKey
+          a.btn.btn-default(href="/show/#{node.file}") Show

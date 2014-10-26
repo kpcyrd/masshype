@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 
-var config = require('../config.json');
-
 /* GET home page. */
 router.get('/', function(req, res) {
 
@@ -11,11 +9,14 @@ router.get('/', function(req, res) {
         var nodes = [];
 
         files.forEach(function(a) {
-            if(/.json$/.test(a))
-                nodes.push(require('../data/' + a));
+            if(found = a.match(/([a-z0-9]+).json/)) {
+                var config = require('../data/' + a);
+                config['file'] = found[1];
+                nodes.push(config);
+            }
         });
 
-        res.render('index', { title: 'Masshype', config: config, nodes: nodes });
+        res.render('index', { title: 'Masshype', nodes: nodes });
     });
 });
 

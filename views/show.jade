@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h3 Peer details
+  span.hidden#addr= config.addr
+  span.hidden#pk= config.publicKey
+  span.hidden#pw= node.password
+  p
+    canvas#qr
+  p
+    code= node.constr

@@ -5,6 +5,7 @@ block content
   form.form-inline(method="post" action="/add")
     div.form-group
       div.col-xs-3
+        input(type="hidden" name="_csrf" value="#{csrfToken}")
         input(name="email" placeholder="Email").form-control
     div.form-group
       div.col-xs-3
@@ -22,4 +23,5 @@ block content
           form.btn-group(method="post" action="delete")
             a.btn.btn-default(href="/show/#{node.file}") Show
             input(type="hidden" name="id" value="#{node.file}")
+            input(type="hidden" name="_csrf" value="#{csrfToken}")
             input.btn.btn-danger(type="submit" value="Unpeer")

@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('cookie-session');
+var csrf = require('csurf');
 
 var routes = require('./routes/index');
 var show = require('./routes/show');
@@ -24,6 +26,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+    keys: [
+        'foo' // TODO: read from config for secure keys
+    ]
+}));
+app.use(csrf());
+
+app.use(function(err, req, res, next) {
+    if(err.code !== 'EBADCSRFTOKEN') return next(err);
+
+    res.status(403);
+    res.send('session has expired of form tampered with');
+});
 
 app.use('/', routes);
 app.use('/users', users);

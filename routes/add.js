@@ -12,8 +12,6 @@ function getFileName(email) {
     return hash.digest('hex');
 }
 
-var config = JSON.parse(fs.readFileSync(process.env['HOME'] + '/.cjdnsadmin'));
-
 router.post('/add', function(req, res) {
     var email = req.body.email;
     var pw = pwgen(31);

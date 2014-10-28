@@ -10,24 +10,32 @@ var rl = readline.createInterface({
 
 var cjdns = new CJDNS(cjdns_config);
 
-cjdns.sendAuth({
-    q: 'AuthorizedPasswords_list',
-}, function(err, data) {
-    if(err) throw err;
+var lines = [];
 
-    rl.on('line', function(line) {
-        var node = JSON.parse(line);
+rl.on('line', function(line) {
+    lines.push(JSON.parse(line));
+});
 
-        if(data.users.indexOf(node.user) == -1) {
-            cjdns.sendAuth({
-                q: 'AuthorizedPasswords_add',
-                args: {
-                    user: node.user,
-                    password: node.password
-                }
-            }, function(err, data) {
-                if(err) throw err;
-            });
-        }
+rl.on('close', function() {
+    cjdns.sendAuth({
+        q: 'AuthorizedPasswords_list',
+    }, function(err, data) {
+        if(err) throw err;
+
+        lines.forEach(function(node) {
+            console.log(node);
+
+            if(data.users.indexOf(node.user) == -1) {
+                cjdns.sendAuth({
+                    q: 'AuthorizedPasswords_add',
+                    args: {
+                        user: node.user,
+                        password: node.password
+                    }
+                }, function(err, data) {
+                    if(err) throw err;
+                });
+            }
+        });
     });
 });

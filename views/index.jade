@@ -18,7 +18,7 @@ block content
       th Actions
     each node in nodes
       tr
-        td= node.email
+        td= node.user
         td
           form.btn-group(method="post" action="delete")
             a.btn.btn-default(href="/show/#{node.file}") Show

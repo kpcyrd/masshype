@@ -1,0 +1,33 @@
+#!/usr/bin/env js
+var readline = require('readline');
+var cjdns_config = require('../cjdns-config');
+var CJDNS = require('../cjdns');
+
+var rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+var cjdns = new CJDNS(cjdns_config);
+
+cjdns.sendAuth({
+    q: 'AuthorizedPasswords_list',
+}, function(err, data) {
+    if(err) throw err;
+
+    rl.on('line', function(line) {
+        var node = JSON.parse(line);
+
+        if(data.users.indexOf(node.user) == -1) {
+            cjdns.sendAuth({
+                q: 'AuthorizedPasswords_add',
+                args: {
+                    user: node.user,
+                    password: node.password
+                }
+            }, function(err, data) {
+                if(err) throw err;
+            });
+        }
+    });
+});

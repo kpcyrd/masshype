@@ -35,7 +35,7 @@ router.get('/', function(req, res) {
                 cjdns.sendAuth({
                     q: 'AuthorizedPasswords_add',
                     args: {
-                        user: x.email,
+                        user: x.user,
                         password: x.password
                     }
                 }, function(err, data) {

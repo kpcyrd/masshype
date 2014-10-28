@@ -22,7 +22,7 @@ router.post('/delete', function(req, res) {
             cjdns.sendAuth({
                 q: 'AuthorizedPasswords_remove',
                 args: {
-                    user: config.email
+                    user: config.user
                 }
             }, function(err, data) {
                 if(err) throw err;

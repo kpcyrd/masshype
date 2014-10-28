@@ -18,7 +18,7 @@ router.post('/add', function(req, res) {
 
     var filename = getFileName(email);
 
-    var data = JSON.stringify({email: email, password: pw});
+    var data = JSON.stringify({user: email, password: pw}) + '\n';
 
     fs.writeFile('data/' + filename + '.json', data, function(err) {
         if(err) {

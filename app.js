@@ -7,6 +7,9 @@ var bodyParser = require('body-parser');
 var session = require('cookie-session');
 var csrf = require('csurf');
 
+var CJDNS = require('./cjdns');
+var cjdns_config = require('./cjdns-config');
+
 var routes = require('./routes/index');
 var show = require('./routes/show');
 var users = require('./routes/users');

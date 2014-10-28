@@ -3,6 +3,8 @@ var router = express.Router();
 var crypto = require('crypto');
 var fs = require('fs');
 var pwgen = require('password-generator');
+var CJDNS = require('../cjdns');
+var cjdns_config = require('../cjdns-config');
 
 function getFileName(email) {
     var hash = crypto.createHash('sha256');
@@ -22,7 +24,18 @@ router.post('/add', function(req, res) {
         if(err) {
             console.log(err);
         } else {
-            res.redirect('/');
+            var cjdns = new CJDNS(cjdns_config);
+
+            cjdns.sendAuth({
+                q: 'AuthorizedPasswords_add',
+                args: {
+                    user: email,
+                    password: pw
+                }
+            }, function(err, data) {
+                if(err) throw err;
+                res.redirect('/');
+            });
         }
     });
 });
